@@ -1,21 +1,30 @@
-# Documento de Visão do Projeto "NOME DO PROJETO"
+# Documento de Visão do Projeto "Interact-On-Text(IOT-Companny) - thrash controller"
 
 Este documento apresenta uma solução de software para o projeto *"NOME DO PROJETO"*, 
 apresentando os problemas a serem solucionados, as necessidades dos principais envolvidos, o alcance do projeto e as funcionalidades esperadas.
 
 ## Objetivos
 
-* Objetivo 1
-* Objetivo 2
-* Objetivo 3
-* etc.
+* Possibilitar Ligar e desligar qualquer módulo atrelado com apenas o enviar de uma menságem texto
+* Inovar o jeito que as pessoas interágem com as coisas ao redor
+
+* Nesse exemplo, interagir remotamente com uma lata de lixo
+
 
 ## Problema
 
-* Descrição do problema: ___
-* Quem é afetado pelo problema: ____
+* Descrição do problema: Falta de Conectividade
+* Quem é afetado pelo problema: Qualquer um que quera se conectar a um objeto comum através de uma mensagem texto de celular
 * Impacto no negócio: ___
-* Benefícios de uma boa solução: ___
+* Benefícios de uma boa solução: Viabilisa satisfação da interação com produtos já utilizados no cotidiano.
+
+## Descrição de hardware
+
+* (1x) u-blox c027-c20/u20/g35 - mbed Enabled Internet of Things(Iot) Starter Kit
+* (1x)Antena de Celular para placa em questão
+* (1x) Controlador Servo Motor
+* (x) Fio Simples 
+
 
 ## Definições, abreviações e outros termos do domínio do problema
 
@@ -26,9 +35,10 @@ apresentando os problemas a serem solucionados, as necessidades dos principais e
 
 ## Integração com outros sistemas
 
-* Sistema externo 1
-* Sistema externo 2
-* Sistema externo 3
+* Lata de lixo
+* Celular
+* Cafeteira
+* Outro arduíno
 * etc.
  
 ## Interessados
@@ -47,10 +57,10 @@ apresentando os problemas a serem solucionados, as necessidades dos principais e
 
 ## Funcionalidades do produto
 
-* Funcionalidade 1
-* Funcionalidade 2
-* etc.
-
+* Ligar.
+* Desligar.
+* Personalizar função.
+* Conectar com ambiente externo.
 ## Restrições do projeto
 
 * Restrição 1
