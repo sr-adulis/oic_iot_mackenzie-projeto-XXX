@@ -1,29 +1,59 @@
 /*
-  Blink
-  Turns on an LED on for one second, then off for one second, repeatedly.
+  Código de execução de movimentação do servo
+*/
 
-  Most Arduinos have an on-board LED you can control. On the Uno and
-  Leonardo, it is attached to digital pin 13. If you're unsure what
-  pin the on-board LED is connected to on your Arduino model, check
-  the documentation at http://www.arduino.cc
+#include <Servo.h>
 
-  This example code is in the public domain.
- 
-  modified 8 May 2014
-  by Scott Fitzgerald
- */
+int Ex_key = 0;
 
+int controller_key = 0;
 
-// the setup function runs once when you press reset or power the board
-void setup() {
-  // initialize digital pin 13 as an output.
-  pinMode(13, OUTPUT);
+int ghost_ex_key = 0;
+
+Servo servo_A2;
+
+long readUltrasonicDistance(int pin)
+{
+  pinMode(pin, OUTPUT);  // Clear the trigger
+  digitalWrite(pin, LOW);
+  delayMicroseconds(2);
+  // Sets the pin on HIGH state for 10 micro seconds
+  digitalWrite(pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(pin, LOW);
+  pinMode(pin, INPUT);
+  // Reads the pin, and returns the sound wave travel time in microseconds
+  return pulseIn(pin, HIGH);
 }
 
-// the loop function runs over and over again forever
-void loop() {
-  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);              // wait for a second
-  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);              // wait for a second
+void setup()
+{
+  pinMode(7, INPUT);
+  servo_A2.attach(A2);
+
+  pinMode(A1, INPUT);
+  controller_key = -1;
+}
+
+void loop()
+{
+  
+  // Determina qual piro recebe o sinal externo
+  Ex_key = digitalRead(7);
+  // verifica a atualização do status de entrada e faz a função de chave de controle
+  if (Ex_key < HIGH && ghost_ex_key != HIGH) {
+    controller_key = (controller_key * -1);
+  }
+  //
+  // Deixa) o servo no estado "Idle"
+  servo_A2.write(0);
+  //
+  // Valida  chave de controle
+  while (0.01723 * readUltrasonicDistance(A1) <= 30 || controller_key == 1) {
+    // muda estado do servo para abertura 
+    servo_A2.write(90);
+    delay(1000);
+  }
+  //salva qual foi o estado da chave externa nessa sequencia
+  ghost_ex_key = Ex_key;
 }
